@@ -75,7 +75,7 @@ Fork the project:
 Open a Pull Request
 
 ## 🎟️ License
-Distributed under the MIT License. See [LICENSE](Licence) for more information.
+Distributed under the MIT License. See [LICENSE](https://github.com/Shineii86/AniFinder/blob/main/LICENSE) for more information.
 
 
 ## 💪 Support
