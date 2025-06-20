@@ -6,7 +6,7 @@
 
 AniFinder is a modern web application that allows you to search for anime and view comprehensive details including ratings, episodes, synopsis, and statistics. Built with HTML, CSS, JavaScript and powered by the Jikan API (unofficial MyAnimeList API).
 
-[![Live Demo](https://img.shields.io/badge/Demo-Live-brightgreen?style=for-the-badge)]([https://your-demo-link.com](https://shineii86.github.io/AniFinder/))
+[![Live Demo](https://img.shields.io/badge/Demo-Live-brightgreen?style=for-the-badge)](https://shineii86.github.io/AniFinder/)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
 [![GitHub Stars](https://img.shields.io/github/stars/Shineii86/AniFinder.svg?style=for-the-badge)](https://github.com/Shineii86/AniFinder/stargazers)
 [![GitHub Issues](https://img.shields.io/github/issues/Shineii86/AniFinder.svg?style=for-the-badge)](https://github.com/Shineii86/AniFinder/issues)
