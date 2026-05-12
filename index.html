@@ -1,774 +1,178 @@
-<!-- © Github @Shineii86 --->
+<!-- © Github @Shineii86 -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AniFinder | Advanced Anime Info Finder</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;600;700;800&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --primary: #ff3e78;
-            --secondary: #00c9ff;
-            --dark: #0d1b2a;
-            --darker: #070f17;
-            --light: #f8f9fa;
-            --card-bg: rgba(19, 33, 51, 0.8);
-            --accent: #ffcc00;
-            --glass: rgba(30, 41, 59, 0.85);
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Nunito', sans-serif;
-        }
-        
-        body {
-            background: linear-gradient(135deg, var(--darker), var(--dark));
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
-            color: var(--light);
-            min-height: 100vh;
-            overflow-x: hidden;
-            position: relative;
-            padding: 20px;
-        }
-        
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                radial-gradient(circle at 10% 20%, rgba(255, 62, 120, 0.1) 0%, transparent 20%),
-                radial-gradient(circle at 90% 80%, rgba(0, 201, 255, 0.1) 0%, transparent 20%);
-            z-index: -1;
-        }
-        
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-        
-        /* Header Styles */
-        header {
-            text-align: center;
-            padding: 30px 20px;
-            position: relative;
-            margin-bottom: 40px;
-            background: var(--glass);
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            overflow: hidden;
-        }
-        
-        header::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-        }
-        
-        .logo {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 15px;
-            margin-bottom: 15px;
-        }
-        
-        .logo-icon {
-            font-size: 2.8rem;
-            color: var(--accent);
-            text-shadow: 0 0 15px rgba(255, 204, 0, 0.5);
-        }
-        
-        h1 {
-            font-family: 'Exo 2', sans-serif;
-            font-size: 3.5rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 10px;
-        }
-        
-        .subtitle {
-            font-size: 1.3rem;
-            max-width: 700px;
-            margin: 0 auto 25px;
-            color: #a0b3c5;
-            line-height: 1.6;
-        }
-        
-        /* Search Section */
-        .search-section {
-            background: var(--glass);
-            border-radius: 20px;
-            padding: 40px;
-            margin: 0 auto 50px;
-            max-width: 900px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .search-section::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-        }
-        
-        .search-container {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 30px;
-        }
-        
-        #search-input {
-            flex: 1;
-            padding: 18px 25px;
-            border: none;
-            border-radius: 15px;
-            font-size: 1.2rem;
-            background: rgba(10, 20, 30, 0.8);
-            color: white;
-            border: 2px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s ease;
-        }
-        
-        #search-input:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 4px rgba(255, 62, 120, 0.3);
-        }
-        
-        #search-input::placeholder {
-            color: #5a7a9a;
-        }
-        
-        #search-btn {
-            padding: 18px 35px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            border: none;
-            border-radius: 15px;
-            color: white;
-            font-weight: bold;
-            font-size: 1.2rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 20px rgba(255, 62, 120, 0.4);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        #search-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(255, 62, 120, 0.6);
-        }
-        
-        .examples {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 15px;
-            margin-top: 25px;
-        }
-        
-        .example {
-            background: rgba(40, 60, 90, 0.5);
-            padding: 10px 20px;
-            border-radius: 50px;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .example:hover {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(255, 62, 120, 0.3);
-        }
-        
-        /* Anime Detail Section */
-        .anime-detail {
-            background: var(--glass);
-            border-radius: 20px;
-            padding: 40px;
-            margin: 0 auto 50px;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            position: relative;
-            overflow: hidden;
-            display: none;
-        }
-        
-        .anime-detail::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-        }
-        
-        .detail-header {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 40px;
-            margin-bottom: 40px;
-        }
-        
-        .anime-poster {
-            flex: 0 0 300px;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
-        }
-        
-        .anime-poster img {
-            width: 100%;
-            height: auto;
-            display: block;
-            transition: transform 0.5s ease;
-        }
-        
-        .anime-poster:hover img {
-            transform: scale(1.05);
-        }
-        
-        .anime-info {
-            flex: 1;
-            min-width: 300px;
-        }
-        
-        .anime-title {
-            font-family: 'Exo 2', sans-serif;
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 20px;
-            color: white;
-            line-height: 1.2;
-        }
-        
-        .anime-meta {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 25px;
-            margin-bottom: 30px;
-            padding-bottom: 25px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .meta-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 1.1rem;
-        }
-        
-        .rating {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            padding: 8px 20px;
-            border-radius: 30px;
-            font-weight: bold;
-            font-size: 1.3rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .anime-synopsis {
-            line-height: 1.8;
-            margin-bottom: 40px;
-            color: #cbd5e1;
-            font-size: 1.1rem;
-            background: rgba(10, 20, 30, 0.4);
-            padding: 25px;
-            border-radius: 15px;
-        }
-        
-        .anime-stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 25px;
-        }
-        
-        .stat-box {
-            background: rgba(20, 30, 50, 0.6);
-            padding: 25px;
-            border-radius: 15px;
-            text-align: center;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-        
-        .stat-box:hover {
-            transform: translateY(-5px);
-            background: rgba(30, 40, 60, 0.7);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-        }
-        
-        .stat-value {
-            font-size: 2.2rem;
-            font-weight: 800;
-            color: var(--accent);
-            margin-bottom: 10px;
-            font-family: 'Exo 2', sans-serif;
-        }
-        
-        .stat-label {
-            font-size: 1.1rem;
-            color: #94a3b8;
-        }
-        
-        /* Loading and Error States */
-        .loading {
-            text-align: center;
-            padding: 60px;
-            display: none;
-        }
-        
-        .spinner {
-            width: 70px;
-            height: 70px;
-            border: 7px solid rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            border-top-color: var(--primary);
-            margin: 0 auto 25px;
-            animation: spin 1.5s linear infinite;
-        }
-        
-        .loading-text {
-            font-size: 1.3rem;
-            color: var(--accent);
-            font-weight: 600;
-        }
-        
-        .error {
-            display: none;
-            text-align: center;
-            padding: 50px;
-            background: rgba(178, 31, 31, 0.2);
-            border-radius: 20px;
-            margin: 30px 0;
-            border: 1px solid rgba(255, 0, 0, 0.2);
-        }
-        
-        .error-icon {
-            font-size: 4rem;
-            margin-bottom: 25px;
-            color: var(--primary);
-            text-shadow: 0 0 15px rgba(255, 62, 120, 0.5);
-        }
-        
-        .error h2 {
-            font-size: 2rem;
-            margin-bottom: 15px;
-            color: white;
-        }
-        
-        .error p {
-            font-size: 1.2rem;
-            max-width: 600px;
-            margin: 0 auto;
-            color: #ffb3b3;
-        }
-        
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 30px;
-            background: var(--glass);
-            border-radius: 20px;
-            margin-top: 50px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-        
-        .footer-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-        
-        .footer-logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--accent);
-        }
-        
-        .api-info {
-            color: #a0b3c5;
-            font-size: 0.9rem;
-        }
-        
-        /* Back Button */
-        .back-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 12px 25px;
-            background: rgba(40, 60, 90, 0.6);
-            color: white;
-            border-radius: 30px;
-            margin-bottom: 30px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .back-btn:hover {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(255, 62, 120, 0.3);
-        }
-        
-        /* Animations */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-        
-        /* Responsive */
-        @media (max-width: 992px) {
-            .footer-content {
-                flex-direction: column;
-                gap: 20px;
-            }
-            
-            .anime-stats {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-        
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2.5rem;
-            }
-            
-            .search-container {
-                flex-direction: column;
-            }
-            
-            .search-section {
-                padding: 30px 20px;
-            }
-            
-            #search-btn {
-                width: 100%;
-                justify-content: center;
-            }
-            
-            .detail-header {
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
-            }
-            
-            .anime-meta {
-                justify-content: center;
-            }
-        }
-        
-        @media (max-width: 576px) {
-            h1 {
-                font-size: 2rem;
-            }
-            
-            .subtitle {
-                font-size: 1.1rem;
-            }
-            
-            .anime-stats {
-                grid-template-columns: 1fr;
-            }
-            
-            .anime-meta {
-                flex-direction: column;
-                align-items: center;
-                gap: 15px;
-            }
-        }
-    </style>
+    <meta name="description" content="Discover your next favorite anime with detailed information, ratings, statistics, and trailers.">
+    <meta name="theme-color" content="#0a0e1a">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="AniFinder — Advanced Anime Info Finder">
+    <meta property="og:description" content="Search any anime. Get ratings, synopsis, trailers, and more.">
+    <meta property="og:type" content="website">
+
+    <!-- Fonts & Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;600;700;800;900&family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐉</text></svg>">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <div class="logo">
-                <i class="fas fa-dragon logo-icon"></i>
-                <h1>AniFinder</h1>
+
+    <!-- Animated Background -->
+    <canvas id="bg-canvas"></canvas>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-inner">
+            <div class="nav-logo" id="nav-logo">
+                <i class="fas fa-dragon nav-logo-icon"></i>
+                <span class="nav-logo-text">AniFinder</span>
             </div>
-            <p class="subtitle">Discover your next favorite anime with detailed information, ratings, and statistics</p>
-        </header>
-        
-        <section class="search-section">
-            <div class="search-container">
-                <input type="text" id="search-input" placeholder="Search for anime... (e.g., Naruto, Demon Slayer)">
-                <button id="search-btn">
-                    <i class="fas fa-search"></i> Search
+            <div class="nav-actions">
+                <button class="nav-btn" id="random-btn" title="Random Anime">
+                    <i class="fas fa-dice"></i>
+                </button>
+                <button class="nav-btn" id="fav-btn" title="Favorites">
+                    <i class="fas fa-heart"></i>
+                    <span class="badge" id="fav-badge" style="display:none"></span>
                 </button>
             </div>
-            <div class="examples">
-                <div class="example" data-search="Naruto">Naruto</div>
-                <div class="example" data-search="One Piece">One Piece</div>
-                <div class="example" data-search="Attack on Titan">Attack on Titan</div>
-                <div class="example" data-search="My Hero Academia">My Hero Academia</div>
-                <div class="example" data-search="Demon Slayer">Demon Slayer</div>
+        </div>
+    </nav>
+
+    <div class="container">
+
+        <!-- ═══════════ HERO / SEARCH ═══════════ -->
+        <section id="hero-section" class="hero">
+            <div class="hero-badge">
+                <i class="fas fa-bolt"></i> Powered by Jikan API — Real-time anime data
+            </div>
+            <h1>AniFinder</h1>
+            <p class="hero-subtitle">Search any anime. Get ratings, synopsis, trailers, characters, and streaming links — all in one place.</p>
+
+            <div class="search-wrapper">
+                <div class="search-bar">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" id="search-input" placeholder="Search for anime... (e.g., Naruto, Frieren, Solo Leveling)" autocomplete="off" spellcheck="false">
+                    <button class="search-submit" id="search-submit">
+                        <i class="fas fa-arrow-right"></i> Search
+                    </button>
+                </div>
+            </div>
+
+            <div class="quick-tags">
+                <span class="quick-tag" data-search="Demon Slayer"><i class="fas fa-fire"></i> Demon Slayer</span>
+                <span class="quick-tag" data-search="Jujutsu Kaisen"><i class="fas fa-bolt"></i> Jujutsu Kaisen</span>
+                <span class="quick-tag" data-search="One Piece"><i class="fas fa-ship"></i> One Piece</span>
+                <span class="quick-tag" data-search="Frieren"><i class="fas fa-hat-wizard"></i> Frieren</span>
+                <span class="quick-tag" data-search="Attack on Titan"><i class="fas fa-shield-alt"></i> Attack on Titan</span>
+                <span class="quick-tag" data-search="Spy x Family"><i class="fas fa-user-secret"></i> Spy x Family</span>
+            </div>
+
+            <div class="shortcut-hint">
+                <span>Press <kbd class="kbd">/</kbd> to focus search · <kbd class="kbd">Esc</kbd> to go back</span>
             </div>
         </section>
-        
-        <div class="loading" id="loading">
-            <div class="spinner"></div>
-            <p class="loading-text">Exploring the anime universe...</p>
-        </div>
-        
-        <div class="error" id="error">
-            <i class="fas fa-exclamation-triangle error-icon"></i>
-            <h2>Anime Not Found!</h2>
-            <p>We couldn't find any anime matching your search. Try a different name or check your spelling.</p>
-        </div>
-        
-        <!-- Anime Detail Section -->
-        <div class="anime-detail" id="anime-detail">
-            <div class="back-btn" id="back-btn">
-                <i class="fas fa-arrow-left"></i> Back to Search
+
+        <!-- ═══════════ TRENDING NOW ═══════════ -->
+        <section id="hero-section" class="anime-grid-section">
+            <div class="section-header">
+                <h2 class="section-title"><i class="fas fa-fire"></i> Trending Now</h2>
             </div>
-            
-            <div class="detail-header">
-                <div class="anime-poster">
-                    <img id="detail-poster" src="" alt="Anime Poster">
-                </div>
-                
-                <div class="anime-info">
-                    <h1 class="anime-title" id="detail-title">Anime Title</h1>
-                    
-                    <div class="anime-meta">
-                        <div class="meta-item">
-                            <i class="fas fa-star"></i>
-                            <span class="rating" id="detail-rating">0.00</span>
-                        </div>
-                        <div class="meta-item">
-                            <i class="fas fa-film"></i>
-                            <span id="detail-type">TV</span>
-                        </div>
-                        <div class="meta-item">
-                            <i class="fas fa-play-circle"></i>
-                            <span id="detail-episodes">0 Episodes</span>
-                        </div>
-                        <div class="meta-item">
-                            <i class="fas fa-calendar"></i>
-                            <span id="detail-year">2023</span>
-                        </div>
-                    </div>
-                    
-                    <div class="anime-synopsis" id="detail-synopsis">
-                        Synopsis will appear here once you search for an anime.
-                    </div>
-                    
-                    <div class="anime-stats">
-                        <div class="stat-box">
-                            <div class="stat-value" id="stat-rank">#0</div>
-                            <div class="stat-label">Rank</div>
-                        </div>
-                        <div class="stat-box">
-                            <div class="stat-value" id="stat-popularity">#0</div>
-                            <div class="stat-label">Popularity</div>
-                        </div>
-                        <div class="stat-box">
-                            <div class="stat-value" id="stat-members">0</div>
-                            <div class="stat-label">Members</div>
-                        </div>
-                        <div class="stat-box">
-                            <div class="stat-value" id="stat-status">-</div>
-                            <div class="stat-label">Status</div>
-                        </div>
-                    </div>
-                </div>
+            <div class="anime-scroll" id="trending-scroll">
+                <!-- Filled by JS -->
             </div>
+        </section>
+
+        <!-- ═══════════ TOP RATED ═══════════ -->
+        <section class="anime-grid-section">
+            <div class="section-header">
+                <h2 class="section-title"><i class="fas fa-trophy"></i> Top Rated</h2>
+            </div>
+            <div class="anime-scroll" id="top-scroll">
+                <!-- Filled by JS -->
+            </div>
+        </section>
+
+        <!-- ═══════════ SEARCH RESULTS ═══════════ -->
+        <section id="results-section" class="results-section">
+            <div class="section-header">
+                <h2 class="section-title"><i class="fas fa-search"></i> Search Results</h2>
+                <span id="results-count" class="results-count"></span>
+            </div>
+            <div class="results-grid" id="results-grid">
+                <!-- Filled by JS -->
+            </div>
+        </section>
+
+        <!-- ═══════════ DETAIL VIEW ═══════════ -->
+        <section id="detail-section" class="detail-section">
+            <button class="detail-back" id="detail-back">
+                <i class="fas fa-arrow-left"></i> Back
+            </button>
+            <div id="detail-content">
+                <!-- Filled by JS -->
+            </div>
+        </section>
+
+        <!-- ═══════════ ERROR STATE ═══════════ -->
+        <div id="error-state" class="error-state">
+            <div class="error-icon"><i class="fas fa-ghost"></i></div>
+            <h2>Something went wrong</h2>
+            <p>Could not load anime data. The API may be rate-limited — please wait a moment and try again.</p>
         </div>
-        
-        <footer>
-            <div class="footer-content">
+
+        <!-- ═══════════ FOOTER ═══════════ -->
+        <footer class="footer">
+            <div class="footer-inner">
                 <div class="footer-logo">
                     <i class="fas fa-dragon"></i>
                     <span>AniFinder</span>
                 </div>
-                <div class="api-info">
-                    Powered by Jikan API | Unofficial MyAnimeList API
+                <div class="footer-info">
+                    <div class="footer-api">Powered by <strong>Jikan API</strong> — Unofficial MyAnimeList API</div>
+                    <div class="footer-copy">Copyright &copy; 2025 Sʜɪɴᴇɪ Nᴏᴜᴢᴇɴ — All Rights Reserved</div>
                 </div>
-                <div class="copyright">
-                   Copyright &copy; 2025 Shinei Nouzen All Rights Reserved
+                <div class="footer-links">
+                    <a class="footer-link" href="https://github.com/Shineii86" target="_blank" rel="noopener" title="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a class="footer-link" href="https://x.com/Shineii86" target="_blank" rel="noopener" title="Twitter">
+                        <i class="fab fa-x-twitter"></i>
+                    </a>
                 </div>
             </div>
         </footer>
+
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const searchInput = document.getElementById('search-input');
-            const searchBtn = document.getElementById('search-btn');
-            const loading = document.getElementById('loading');
-            const errorContainer = document.getElementById('error');
-            const examples = document.querySelectorAll('.example');
-            const animeDetail = document.getElementById('anime-detail');
-            const backBtn = document.getElementById('back-btn');
-            
-            // DOM elements for anime details
-            const detailPoster = document.getElementById('detail-poster');
-            const detailTitle = document.getElementById('detail-title');
-            const detailRating = document.getElementById('detail-rating');
-            const detailType = document.getElementById('detail-type');
-            const detailEpisodes = document.getElementById('detail-episodes');
-            const detailYear = document.getElementById('detail-year');
-            const detailSynopsis = document.getElementById('detail-synopsis');
-            const statRank = document.getElementById('stat-rank');
-            const statPopularity = document.getElementById('stat-popularity');
-            const statMembers = document.getElementById('stat-members');
-            const statStatus = document.getElementById('stat-status');
-            
-            // Search when button is clicked
-            searchBtn.addEventListener('click', searchAnime);
-            
-            // Search when Enter is pressed
-            searchInput.addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') {
-                    searchAnime();
-                }
-            });
-            
-            // Example search shortcuts
-            examples.forEach(example => {
-                example.addEventListener('click', function() {
-                    searchInput.value = this.getAttribute('data-search');
-                    searchAnime();
-                });
-            });
-            
-            // Back button functionality
-            backBtn.addEventListener('click', function() {
-                document.querySelector('.search-section').style.display = 'block';
-                animeDetail.style.display = 'none';
-            });
-            
-            // Initial popular anime to display
-            const initialAnime = "Demon Slayer";
-            
-            // Load initial anime on page load
-            loadAnime(initialAnime);
-            
-            // Search anime function
-            function searchAnime() {
-                const query = searchInput.value.trim();
-                
-                if (!query) {
-                    alert('Please enter an anime name');
-                    return;
-                }
-                
-                loadAnime(query);
-            }
-            
-            // Load anime function
-            function loadAnime(query) {
-                // Show loading, hide results and error
-                loading.style.display = 'block';
-                errorContainer.style.display = 'none';
-                
-                // Fetch anime data from Jikan API
-                fetch(`https://api.jikan.moe/v4/anime?q=${encodeURIComponent(query)}&limit=1`)
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error('Network response was not ok');
-                        }
-                        return response.json();
-                    })
-                    .then(data => {
-                        if (data.data && data.data.length > 0) {
-                            displayAnimeDetails(data.data[0]);
-                        } else {
-                            showError();
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Error fetching data:', error);
-                        showError();
-                    });
-            }
-            
-            // Display anime details
-            function displayAnimeDetails(anime) {
-                loading.style.display = 'none';
-                
-                // Set anime details
-                detailPoster.src = anime.images?.jpg?.large_image_url || 'https://via.placeholder.com/300x450?text=No+Image';
-                detailTitle.textContent = anime.title || anime.title_english || 'Unknown Title';
-                detailRating.textContent = anime.score ? anime.score.toFixed(2) : 'N/A';
-                detailType.textContent = anime.type || 'Unknown';
-                detailEpisodes.textContent = anime.episodes ? `${anime.episodes} Episodes` : 'Unknown';
-                detailYear.textContent = anime.year || anime.aired?.prop?.from?.year || 'Unknown';
-                detailSynopsis.textContent = anime.synopsis ? anime.synopsis.replace(/\n\n/g, '\n') : 'No synopsis available.';
-                
-                // Set statistics
-                statRank.textContent = anime.rank ? `#${anime.rank}` : 'N/A';
-                statPopularity.textContent = anime.popularity ? `#${anime.popularity}` : 'N/A';
-                statMembers.textContent = anime.members ? anime.members.toLocaleString() : 'N/A';
-                statStatus.textContent = anime.status || 'Unknown';
-                
-                // Show anime detail section and hide search
-                document.querySelector('.search-section').style.display = 'none';
-                animeDetail.style.display = 'block';
-                
-                // Scroll to top
-                window.scrollTo(0, 0);
-            }
-            
-            // Show error function
-            function showError() {
-                loading.style.display = 'none';
-                errorContainer.style.display = 'block';
-                animeDetail.style.display = 'none';
-            }
-        });
-    </script>
+    <!-- ═══════════ LOADING OVERLAY ═══════════ -->
+    <div id="loading-overlay" class="loading-overlay">
+        <div class="loading-spinner"></div>
+        <div class="loading-text">Loading...</div>
+        <div class="loading-subtext"></div>
+    </div>
+
+    <!-- ═══════════ FAVORITES PANEL ═══════════ -->
+    <div id="overlay" class="overlay"></div>
+    <aside id="favorites-panel" class="favorites-panel">
+        <div class="favorites-header">
+            <h3><i class="fas fa-heart"></i> Favorites</h3>
+            <button class="favorites-close" id="close-fav"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="favorites-list" id="favorites-list">
+            <!-- Filled by JS -->
+        </div>
+    </aside>
+
+    <!-- App Script (ES Module) -->
+    <script type="module" src="js/app.js"></script>
 </body>
 </html>
