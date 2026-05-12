@@ -4,6 +4,23 @@ All notable changes to AniFinder are documented here.
 
 ---
 
+## [v2.0.1] — 2025-05-12
+
+### 🐛 Bug Fixes
+
+**Search**
+- Improved search accuracy: results now sorted by score (highest first)
+- Added `order_by=score&sort=desc` parameter to Jikan API queries
+
+**Layout**
+- Fixed search results appearing below Trending/Top Rated sections
+- Wrapped home page sections (hero, trending, top rated) in `#home-sections` container
+- Home sections now properly hidden when viewing search results or detail page
+- Fixed duplicate `id="hero-section"` on trending section element
+- Added scroll-to-top when search begins
+
+---
+
 ## [v2.0.0] — 2025-05-12
 
 ### 🎨 Full UI/UX Redesign
