@@ -4,6 +4,22 @@ All notable changes to AniFinder are documented here.
 
 ---
 
+## [v2.0.2] — 2025-05-12
+
+### 📝 Documentation
+
+- Upgraded README with centered hero layout and badges
+- Added Table of Contents with anchor links
+- Added feature comparison table (6 categories: Search, Detail, Personalization, UI/UX, Performance, Responsive)
+- Added Screenshots section (desktop/mobile placeholders)
+- Added API Reference table with all endpoints used
+- Added Keyboard Shortcuts reference table
+- Added Contributing guide with ideas checklist (light theme, characters, episodes, reviews, filters, watchlist, PWA)
+- Added Changelog quick-summary section
+- Centered footer with GitHub/Twitter badges and star call-to-action
+
+---
+
 ## [v2.0.1] — 2025-05-12
 
 ### 🐛 Bug Fixes
