@@ -32,7 +32,7 @@ async function apiFetch(endpoint, params = {}) {
 }
 
 export async function searchAnime(query, page = 1, limit = 24) {
-    return apiFetch('/anime', { q: query, page, limit, sfw: true });
+    return apiFetch('/anime', { q: query, page, limit, sfw: true, order_by: 'score', sort: 'desc' });
 }
 
 export async function getAnimeById(id) {

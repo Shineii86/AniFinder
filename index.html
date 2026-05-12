@@ -49,57 +49,62 @@
 
     <div class="container">
 
-        <!-- ═══════════ HERO / SEARCH ═══════════ -->
-        <section id="hero-section" class="hero">
-            <div class="hero-badge">
-                <i class="fas fa-bolt"></i> Powered by Jikan API — Real-time anime data
-            </div>
-            <h1>AniFinder</h1>
-            <p class="hero-subtitle">Search any anime. Get ratings, synopsis, trailers, characters, and streaming links — all in one place.</p>
+        <!-- ═══════════ HOME SECTIONS ═══════════ -->
+        <div id="home-sections">
 
-            <div class="search-wrapper">
-                <div class="search-bar">
-                    <i class="fas fa-search search-icon"></i>
-                    <input type="text" id="search-input" placeholder="Search for anime... (e.g., Naruto, Frieren, Solo Leveling)" autocomplete="off" spellcheck="false">
-                    <button class="search-submit" id="search-submit">
-                        <i class="fas fa-arrow-right"></i> Search
-                    </button>
+            <!-- HERO / SEARCH -->
+            <section id="hero-section" class="hero">
+                <div class="hero-badge">
+                    <i class="fas fa-bolt"></i> Powered by Jikan API — Real-time anime data
                 </div>
-            </div>
+                <h1>AniFinder</h1>
+                <p class="hero-subtitle">Search any anime. Get ratings, synopsis, trailers, characters, and streaming links — all in one place.</p>
 
-            <div class="quick-tags">
-                <span class="quick-tag" data-search="Demon Slayer"><i class="fas fa-fire"></i> Demon Slayer</span>
-                <span class="quick-tag" data-search="Jujutsu Kaisen"><i class="fas fa-bolt"></i> Jujutsu Kaisen</span>
-                <span class="quick-tag" data-search="One Piece"><i class="fas fa-ship"></i> One Piece</span>
-                <span class="quick-tag" data-search="Frieren"><i class="fas fa-hat-wizard"></i> Frieren</span>
-                <span class="quick-tag" data-search="Attack on Titan"><i class="fas fa-shield-alt"></i> Attack on Titan</span>
-                <span class="quick-tag" data-search="Spy x Family"><i class="fas fa-user-secret"></i> Spy x Family</span>
-            </div>
+                <div class="search-wrapper">
+                    <div class="search-bar">
+                        <i class="fas fa-search search-icon"></i>
+                        <input type="text" id="search-input" placeholder="Search for anime... (e.g., Naruto, Frieren, Solo Leveling)" autocomplete="off" spellcheck="false">
+                        <button class="search-submit" id="search-submit">
+                            <i class="fas fa-arrow-right"></i> Search
+                        </button>
+                    </div>
+                </div>
 
-            <div class="shortcut-hint">
-                <span>Press <kbd class="kbd">/</kbd> to focus search · <kbd class="kbd">Esc</kbd> to go back</span>
-            </div>
-        </section>
+                <div class="quick-tags">
+                    <span class="quick-tag" data-search="Demon Slayer"><i class="fas fa-fire"></i> Demon Slayer</span>
+                    <span class="quick-tag" data-search="Jujutsu Kaisen"><i class="fas fa-bolt"></i> Jujutsu Kaisen</span>
+                    <span class="quick-tag" data-search="One Piece"><i class="fas fa-ship"></i> One Piece</span>
+                    <span class="quick-tag" data-search="Frieren"><i class="fas fa-hat-wizard"></i> Frieren</span>
+                    <span class="quick-tag" data-search="Attack on Titan"><i class="fas fa-shield-alt"></i> Attack on Titan</span>
+                    <span class="quick-tag" data-search="Spy x Family"><i class="fas fa-user-secret"></i> Spy x Family</span>
+                </div>
 
-        <!-- ═══════════ TRENDING NOW ═══════════ -->
-        <section id="hero-section" class="anime-grid-section">
-            <div class="section-header">
-                <h2 class="section-title"><i class="fas fa-fire"></i> Trending Now</h2>
-            </div>
-            <div class="anime-scroll" id="trending-scroll">
-                <!-- Filled by JS -->
-            </div>
-        </section>
+                <div class="shortcut-hint">
+                    <span>Press <kbd class="kbd">/</kbd> to focus search · <kbd class="kbd">Esc</kbd> to go back</span>
+                </div>
+            </section>
 
-        <!-- ═══════════ TOP RATED ═══════════ -->
-        <section class="anime-grid-section">
-            <div class="section-header">
-                <h2 class="section-title"><i class="fas fa-trophy"></i> Top Rated</h2>
-            </div>
-            <div class="anime-scroll" id="top-scroll">
-                <!-- Filled by JS -->
-            </div>
-        </section>
+            <!-- TRENDING NOW -->
+            <section class="anime-grid-section">
+                <div class="section-header">
+                    <h2 class="section-title"><i class="fas fa-fire"></i> Trending Now</h2>
+                </div>
+                <div class="anime-scroll" id="trending-scroll">
+                    <!-- Filled by JS -->
+                </div>
+            </section>
+
+            <!-- TOP RATED -->
+            <section class="anime-grid-section">
+                <div class="section-header">
+                    <h2 class="section-title"><i class="fas fa-trophy"></i> Top Rated</h2>
+                </div>
+                <div class="anime-scroll" id="top-scroll">
+                    <!-- Filled by JS -->
+                </div>
+            </section>
+
+        </div>
 
         <!-- ═══════════ SEARCH RESULTS ═══════════ -->
         <section id="results-section" class="results-section">

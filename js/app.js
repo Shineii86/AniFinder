@@ -5,7 +5,7 @@ import { getFavorites, addFavorite, removeFavorite, isFavorite, getSearchHistory
 import { $, $$, show, hide, toast, createAnimeCard, createSkeletonCard, createFavItem, formatNumber, debounce, initStars } from './ui.js';
 
 /* ─── DOM References ─── */
-let heroSection, searchSection, resultsSection, detailSection, errorState;
+let heroSection, homeSections, resultsSection, detailSection, errorState;
 let searchInput, searchSubmit, loadingOverlay;
 let trendingScroll, topScroll;
 let resultsGrid, resultsCount;
@@ -25,7 +25,7 @@ const STATE = {
 document.addEventListener('DOMContentLoaded', async () => {
     // Cache DOM
     heroSection = $('#hero-section');
-    searchSection = $('#search-section');
+    homeSections = $('#home-sections');
     resultsSection = $('#results-section');
     detailSection = $('#detail-section');
     errorState = $('#error-state');
@@ -137,6 +137,7 @@ async function doSearch(query, page = 1) {
 
     addSearchHistory(query);
     switchView('results');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 
     try {
         const data = await api.searchAnime(query, page, 24);
@@ -429,11 +430,11 @@ async function loadRandom() {
 /* ─── Navigation ─── */
 function switchView(view) {
     STATE.currentView = view;
-    hide(heroSection); hide(resultsSection); hide(detailSection); hide(errorState);
+    hide(homeSections); hide(resultsSection); hide(detailSection); hide(errorState);
 
     switch (view) {
         case 'home':
-            show(heroSection);
+            show(homeSections);
             break;
         case 'results':
             show(resultsSection);
